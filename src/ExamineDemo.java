@@ -2,15 +2,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ExampineDemo {
-    public static void main(String[] args) {
-        System.out.println("OnlineTest ishlash uchun");
-        System.out.println("----------------------------------------------");
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\nTizimga kirmoqchimisiz? \n1.HA    2.YO'Q");
-        int num = scanner.nextInt();
+public class ExamineDemo {
+    public static List<User> userList = new ArrayList<>();
+    public static User currentUser = null;
+    public static List<Subject> subjects = new ArrayList<>();
+    public static List<Question> questions = new ArrayList<>();
+    public static List<Answer> answers = new ArrayList<>();
 
-        if (num != 2) {
+
+    public static void main(String[] args) {
+        storingSubjects();
+        storingQuestions();
+
+        boolean b = true;
+        while (b) {
+            System.out.println("OnlineTest ishlash uchun");
+            System.out.println("----------------------------------------------");
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("\nTizimga kirmoqchimisiz? \n1.HA\t\t\t2.YO'Q");
+            int choice = scanner.nextInt();
+
+            if (choice == 1) {
+                start();
+            } else {
+                b = false;
+            }
+        }
+
+       /* if (num != 2) {
             System.out.println("Ismingizni kiriting:");
             String NAME = scanner.next();
             System.out.print("Email: ");
@@ -25,72 +44,72 @@ public class ExampineDemo {
                     } else System.out.println("Login yoki parol xato");
                 }
 
-        System.out.println("\n----------------------------------------------\n");
-        List<Role> roles = new ArrayList<>();
-        roles.add(new Role("\n"));
-        roles.add(new Role("1.STUDENT\n"));
-        roles.add(new Role("2.TEACHER\n"));
-        roles.add(new Role("3.DIRECTOR"));
-        //               System.out.println("1.STUDENT\n2.TEACHER\n3.DIRECTOR");
-        System.out.println(roles);
-        int num1 = scanner.nextInt();
-
-        switch (num1) {
-            case 1:
-
                 System.out.println("\n----------------------------------------------\n");
-                System.out.println("1.Test yechish\n2.Natijani ko'rish\n0.Chiqish");
-                int number = scanner.nextInt();
-                System.out.println("\n----------------------------------------------\n");
+                List<Role> roles = new ArrayList<>();
+                roles.add(new Role("\n"));
+                roles.add(new Role("1.STUDENT\n"));
+                roles.add(new Role("2.TEACHER\n"));
+                roles.add(new Role("3.DIRECTOR"));
+                //               System.out.println("1.STUDENT\n2.TEACHER\n3.DIRECTOR");
+                System.out.println(roles);
+                int num1 = scanner.nextInt();
 
-
-                switch (number) {
+                switch (num1) {
                     case 1:
-                        System.out.print("Fanni tanlang");
-                        List<Subject> subjects = new ArrayList<>();
-                        subjects.add(new Subject("Fanni tanlang\n"));
-                        subjects.add(new Subject("1.Matematika\n"));
-                        subjects.add(new Subject("2.Fizika\n"));
-                        subjects.add(new Subject("3.Ona tili\n"));
-                        subjects.add(new Subject("4.Ingiliz tili\n"));
-                        subjects.add(new Subject("5.Tarix"));
-                        //           System.out.println("\n1.Matematika\n2.Fizika\n3.Ona tili\n4.Ingiliz tili\n");
-                        System.out.println(subjects);
-                        int number1 = scanner.nextInt();
-                        List<Answer> answerList = new ArrayList<>();
-                        List<Question> questions = new ArrayList<>();
-                        switch (number1) {
+
+                        System.out.println("\n----------------------------------------------\n");
+                        System.out.println("1.Test yechish\n2.Natijani ko'rish\n0.Chiqish");
+                        int number = scanner.nextInt();
+                        System.out.println("\n----------------------------------------------\n");
+
+
+                        switch (number) {
                             case 1:
+                                System.out.print("Fanni tanlang");
+                                List<Subject> subjects = new ArrayList<>();
+                                subjects.add(new Subject("Fanni tanlang\n"));
+                                subjects.add(new Subject("1.Matematika\n"));
+                                subjects.add(new Subject("2.Fizika\n"));
+                                subjects.add(new Subject("3.Ona tili\n"));
+                                subjects.add(new Subject("4.Ingiliz tili\n"));
+                                subjects.add(new Subject("5.Tarix"));
+                                //           System.out.println("\n1.Matematika\n2.Fizika\n3.Ona tili\n4.Ingiliz tili\n");
+                                System.out.println(subjects);
+                                int number1 = scanner.nextInt();
+                                List<Answer> answerList = new ArrayList<>();
+                                List<Question> questions = new ArrayList<>();
+                                switch (number1) {
+                                    case 1:
 //                                        List<Question> questions = new ArrayList<>();
 //                                        List<Answer> answerList = new ArrayList<>();
-                                questions.add(new Question("1)Boshidagi 5 ta tub sonlar yig'indisini toping?", subjects.get(1)));
-                                answerList.add(new Answer("A.26", false, questions.get(0)));
-                                answerList.add(new Answer("B.28", true, questions.get(0)));
-                                answerList.add(new Answer("C.30", false, questions.get(0)));
-                                System.out.println(questions);
-                                System.out.println(answerList);
-                                String question1 = scanner.next();
-                                switch (question1) {
-                                    case "A":
-                                        System.out.println("Xato");
-                                        System.out.println("To'g'ri javob - B");
-                                        break;
-                                    case "B":
-                                        System.out.println("Barakalla!");
-                                        break;
-                                    case "C":
-                                        System.out.println("Xato");
-                                        System.out.println("To'g'ri javob - B");
+                                        questions.add(new Question("1)Boshidagi 5 ta tub sonlar yig'indisini toping?", subjects.get(1)));
+                                        answerList.add(new Answer("A.26", false, questions.get(0)));
+                                        answerList.add(new Answer("B.28", true, questions.get(0)));
+                                        answerList.add(new Answer("C.30", false, questions.get(0)));
+                                        System.out.println(questions);
+                                        System.out.println(answerList);
+                                        String answer1 = scanner.next();        // A
+                                        switch (answer1.trim().toUpperCase()) {
+                                            case "A":
+                                                System.out.println("Xato");
+                                                System.out.println("To'g'ri javob - B");
+                                                break;
+                                            case "B":
+                                                System.out.println("Barakalla!");
+                                                break;
+                                            case "C":
+                                                System.out.println("Xato");
+                                                System.out.println("To'g'ri javob - B");
+                                                break;
+                                        }
 
-
-                                    questions.add(new Question("2)6 sonining 3-darajasi nechchiga teng?", subjects.get(1)));
-                                    answerList.add(new Answer("A.216", true, questions.get(1)));
-                                    answerList.add(new Answer("B.336", false, questions.get(1)));
-                                    answerList.add(new Answer("C.196", false, questions.get(1)));
+                                        questions.add(new Question("2)6 sonining 3-darajasi nechchiga teng?", subjects.get(1)));
+                                        answerList.add(new Answer("A.216", true, questions.get(1)));
+                                        answerList.add(new Answer("B.336", false, questions.get(1)));
+                                        answerList.add(new Answer("C.196", false, questions.get(1)));
                                         System.out.println(questions);
                                         System.out.println(answerList);
                                         String question2 = scanner.next();
-
 
 
                                 }
@@ -172,16 +191,71 @@ public class ExampineDemo {
 
                         }
                 }
-        }
-        List<User> userList = new ArrayList<>();
-        userList.add(new User("Xudoyor Quchqarov", roles.get(0)));
-        userList.add(new User("Xudoyor ", roles.get(0)));
-        userList.add(new User("Quchqarov", roles.get(0)));
+            }
+            List<User> userList = new ArrayList<>();
+            userList.add(new User("Xudoyor Quchqarov", roles.get(0)));
+            userList.add(new User("Xudoyor ", roles.get(0)));
+            userList.add(new User("Quchqarov", roles.get(0)));
 
+
+        }
+    } else
+            System.out.println("Tizimdan muvaffaqiyatli chiqdingiz!");
+        return;*/
+    }
+
+    private static void storingQuestions() {
+        questions.add(new Question("1)Boshidagi 5 ta tub sonlar yig'indisini toping?", subjects.get(0)));
+        answers.add(new Answer("A.26", false, questions.get(0)));
+        answers.add(new Answer("B.28", true, questions.get(0)));
+        answers.add(new Answer("C.30", false, questions.get(0)));
 
     }
-        } else
-            System.out.println("Tizimdan muvaffaqiyatli chiqdingiz!");
-        return;
+
+    private static void storingSubjects() {
+        subjects.add(new Subject("1.Matematika\n"));
+        subjects.add(new Subject("2.Fizika\n"));
+        subjects.add(new Subject("3.Ona tili\n"));
+        subjects.add(new Subject("4.Ingiliz tili\n"));
+        subjects.add(new Subject("5.Tarix"));
+    }
+
+    public static void start() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ismingizni kiriting:");
+        String name = scanner.next();
+        System.out.print("Email: ");
+        String login = scanner.next();
+        System.out.print("Password: ");
+        String password = scanner.next();
+        User user = new User(name, new Role("STUDENT"), login, password);
+        currentUser = user;
+        userList.add(user);
+
+        boolean b = true;
+        while (b) {
+            System.out.println("\n----------------------------------------------\n");
+            System.out.println("1.Test yechish\n2.Natijani ko'rish\n0.Chiqish");
+            int choice = scanner.nextInt();
+            System.out.println("\n----------------------------------------------\n");
+            switch (choice) {
+                case 1:
+                    testingProcess();
+                    break;
+                case 2:
+                    viewResults();
+                    break;
+                default:
+                    b = false;
+            }
+        }
+    }
+
+    private static void viewResults() {
+        System.out.println("Results");
+    }
+
+    private static void testingProcess() {
+        System.out.println("Testing Process...");
     }
 }
